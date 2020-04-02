@@ -12,9 +12,19 @@
   </form>
   <ul>
     {% for todo in todos %}
+    <form method="POST" class="make_completed">
+      <button type="checkbox" name="make_completed" value="{{ todo['id'] }}""></button>
+    </form>
       <li class="{{ "completed" if todo['completed'] }}">
         {{ todo['description'] }}
       </li>
+      <form method="POST" class="update">
+        <input type="text" name="update_text" id="update">
+        <button type="submit" name="update_which" value="{{ todo['id'] }}"">Update This Task</button>
+      </form>
+      <form method="POST" class="delete">
+        <button type="submit" name="remove" value="{{ todo['id'] }}"">Remove This Task</button>
+      </form>
     {% endfor %}
   </ul>
   <form method="POST" class="new_task">
